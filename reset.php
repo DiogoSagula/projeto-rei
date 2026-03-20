@@ -2,7 +2,7 @@
 require 'conexao.php'; // Usa a sua conexão que já está funcionando
 
 // A senha que vamos cadastrar
-$senha_desejada = "123";
+$senha_desejada = "";
 
 // O PHP gera a criptografia correta e atualizada
 $senha_segura = password_hash($senha_desejada, PASSWORD_DEFAULT);
