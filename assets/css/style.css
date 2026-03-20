@@ -22,10 +22,10 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    animation: fadeInPage 0.3s ease-in-out forwards;
 }
 
-/* --- 2. TRANSIÇÃO SUAVE (FADE) --- */
-/* Garante que a troca de temas seja suave em todos os elementos */
+/* --- 2. TRANSIÇÃO SUAVE GERAL --- */
 body, .portal-header, .portal-nav, .portal-nav a, .main-content, .filters, .table-container, table, th, td, input, select, textarea, .stat-card, .modal-content, .portal-footer {
     transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
@@ -133,15 +133,9 @@ h1 { color: var(--cor-header); margin: 0; font-size: 1.75rem; }
     display: flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 4px 6px rgba(239, 68, 68, 0.3); 
     transition: all 0.2s;
 }
-
-.button-danger:hover {
-    background-color: #dc2626;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(239, 68, 68, 0.4);
-}
+.button-danger:hover { background-color: #dc2626; transform: translateY(-2px); }
 
 /* --- 6. FILTROS E TABELAS --- */
 .filters {
@@ -185,7 +179,6 @@ h1 { color: var(--cor-header); margin: 0; font-size: 1.75rem; }
 
 table { width: 100%; border-collapse: collapse; }
 th, td { padding: 18px 20px; text-align: left; border-bottom: 1px solid var(--cor-fundo); }
-tbody tr:last-child td { border-bottom: none; }
 thead { background-color: #f8fafc; }
 th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--cor-texto-claro); font-weight: 700; }
 tbody tr:hover { background-color: #f8fafc; transition: background-color 0.2s ease; }
@@ -210,76 +203,37 @@ tbody tr:hover { background-color: #f8fafc; transition: background-color 0.2s ea
 }
 .details-button:hover { border-color: var(--cor-principal); color: var(--cor-principal); background-color: #fff7ed; }
 
-/* --- 7. ESTILOS ESPECÍFICOS DOS RELATÓRIOS --- */
-.stats-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-    justify-content: flex-start;
-    margin-top: 20px;
-}
-
+/* --- 7. ESTILOS RELATÓRIOS --- */
+.stats-grid { display: flex; flex-wrap: wrap; gap: 25px; margin-top: 20px; }
 .stat-card {
-    background: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    border: 1px solid #e2e8f0;
-    flex: 1 1 260px;
-    max-width: 350px;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    background: #fff; padding: 25px; border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex;
+    align-items: center; gap: 20px; border: 1px solid #e2e8f0;
+    flex: 1 1 260px; max-width: 350px; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
-
-.stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    background-color: #f8fafc;
-}
-
-.card-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    flex-shrink: 0;
-}
-
-/* Cores dos Ícones */
+.stat-card:hover { transform: translateY(-5px); background-color: #f8fafc; }
+.card-icon { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
 .icon-recebido { background-color: #f3e8ff; color: #7e22ce; }
 .icon-aguardando { background-color: #fef3c7; color: #92400e; }
 .icon-producao { background-color: #dbeafe; color: #1e40af; }
 .icon-pronto { background-color: #d1fae5; color: #065f46; }
 .icon-finalizado { background-color: #f3f4f6; color: #4b5563; }
-
-.card-info { overflow: hidden; display: flex; flex-direction: column; }
 .card-title { font-size: 0.9rem; color: #64748b; margin-bottom: 5px; font-weight: 600; }
 .card-value { font-size: 2rem; font-weight: 700; color: #0f172a; line-height: 1; }
 
-/* --- 8. MODAL --- */
+/* --- 8. MODAL (MELHORADO) --- */
 .modal-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(15, 23, 42, 0.7);
-    backdrop-filter: blur(2px);
-    display: flex; justify-content: center; align-items: center;
-    z-index: 2000;
-    transition: opacity 0.3s ease;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(15, 23, 42, 0.7); backdrop-filter: blur(2px);
+    display: flex; justify-content: center; align-items: center; z-index: 2000;
 }
-.modal-overlay.hidden { display: none; opacity: 0; }
+.modal-overlay.hidden { display: none; }
 
 .modal-content {
     background-color: var(--branco);
-    padding: 30px;
-    border-radius: 12px;
-    width: 90%; max-width: 600px;
-    position: relative;
+    padding: 30px; border-radius: 12px;
+    width: 90%; max-width: 600px; position: relative;
     box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
     animation: slideUp 0.3s ease-out;
 }
@@ -289,142 +243,71 @@ tbody tr:hover { background-color: #f8fafc; transition: background-color 0.2s ea
     position: absolute; top: 15px; right: 20px;
     background: none; border: none; font-size: 2rem; color: #cbd5e1; cursor: pointer;
 }
-.modal-close:hover { color: var(--vermelho-perigo); }
+.modal-content h2 { color: var(--cor-header); border-bottom: 1px solid var(--cor-fundo); padding-bottom: 15px; margin-top: 0; margin-bottom: 25px; }
 
-.modal-content h2 { color: var(--cor-header); border-bottom: 1px solid var(--cor-fundo); padding-bottom: 15px; margin-top: 0; }
+/* Estrutura de itens dentro do modal */
+.modal-item {
+    display: flex; align-items: flex-start; gap: 15px;
+    margin-bottom: 20px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--cor-fundo);
+}
+.modal-item i { color: var(--cor-principal); width: 20px; text-align: center; margin-top: 5px; }
+.modal-item label { display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--cor-texto-claro); margin-bottom: 4px; }
+.modal-item p { margin: 0; font-weight: 500; color: var(--cor-texto); }
+
+.modal-actions {
+    display: flex; justify-content: flex-end; gap: 12px;
+    margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--cor-fundo);
+}
 
 /* --- 9. RODAPÉ --- */
 .portal-footer {
-    background-color: var(--branco);
-    text-align: center;
-    padding: 25px 0;
-    border-top: 1px solid var(--cor-borda);
-    font-size: 0.85rem;
-    color: var(--cor-texto-claro);
-    margin-top: auto;
+    background-color: var(--branco); text-align: center;
+    padding: 25px 0; border-top: 1px solid var(--cor-borda);
+    font-size: 0.85rem; color: var(--cor-texto-claro); margin-top: auto;
 }
 
 /* --- 10. INPUTS GERAIS --- */
-input, select, textarea { color: var(--cor-header); }
-::placeholder { color: #94a3b8; opacity: 1; }
+input, select, textarea { color: var(--cor-header); font-family: inherit; }
+::placeholder { color: #94a3b8; }
 
 /* --- 11. BOTÃO SOL/LUA --- */
 .theme-toggle-btn {
-    background: rgba(255, 255, 255, 0.1); 
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--branco);
-    font-size: 1.1rem;
-    cursor: pointer;
-    padding: 6px 10px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--branco); font-size: 1.1rem; cursor: pointer;
+    padding: 6px 10px; border-radius: 6px; display: flex; align-items: center;
 }
-
-.theme-toggle-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
-}
-
-/* Quando estiver no Dark Mode, o botão fica amarelinho (Sol) */
-body.dark-mode .theme-toggle-btn {
-    color: #fcd34d; 
-    background: rgba(252, 211, 77, 0.15);
-    border-color: rgba(252, 211, 77, 0.3);
-}
+body.dark-mode .theme-toggle-btn { color: #fcd34d; background: rgba(252, 211, 77, 0.15); border-color: rgba(252, 211, 77, 0.3); }
 
 /* --- 12. MODO ESCURO (DARK MODE) --- */
 body.dark-mode {
-    --cor-header: #0b1121; 
-    --cor-fundo: #0f172a;  
-    --branco: #1e293b;     
-    --cor-texto: #f8fafc;  
-    --cor-texto-claro: #94a3b8; 
-    --cor-borda: #334155;  
+    --cor-header: #0b1121; --cor-fundo: #0f172a; --branco: #1e293b;     
+    --cor-texto: #f8fafc; --cor-texto-claro: #94a3b8; --cor-borda: #334155;  
 }
 
-/* Ajustes gerais de texto no Dark Mode */
-body.dark-mode h1, 
-body.dark-mode .card-value,
-body.dark-mode .modal-content h2 { 
-    color: var(--cor-texto) !important; 
-}
+body.dark-mode h1, body.dark-mode .card-value, body.dark-mode .modal-content h2 { color: var(--cor-texto) !important; }
+body.dark-mode .portal-header, body.dark-mode .user-info, body.dark-mode .logout-button { color: #f8fafc !important; }
+body.dark-mode .portal-nav a.active { background-color: rgba(249, 115, 22, 0.15); }
 
-/* Header e Navegação */
-body.dark-mode .portal-header,
-body.dark-mode .user-info,
-body.dark-mode .logout-button {
-    color: #f8fafc !important; 
-}
-
-body.dark-mode .logout-button:hover {
-    background-color: rgba(255, 255, 255, 0.15); 
-}
-
-body.dark-mode .portal-nav a.active {
-    background-color: rgba(249, 115, 22, 0.15); 
-}
-
-/* Tabela e Modal */
+/* Tabela e Modal no Dark Mode */
 body.dark-mode thead { background-color: #0f172a; }
 body.dark-mode tbody tr:hover { background-color: #334155; }
-body.dark-mode .modal-content { background-color: var(--branco); }
+body.dark-mode .modal-content { background-color: var(--branco); border: 1px solid var(--cor-borda); }
+body.dark-mode .modal-item, body.dark-mode .modal-actions, body.dark-mode .modal-content h2 { border-color: var(--cor-borda) !important; }
 
-/* Inputs e Filtros */
-body.dark-mode input, 
-body.dark-mode select, 
-body.dark-mode textarea {
-    background-color: #0f172a !important;
-    color: var(--cor-texto) !important;
-    border-color: var(--cor-borda) !important;
+/* Inputs no Dark Mode */
+body.dark-mode input, body.dark-mode select, body.dark-mode textarea {
+    background-color: #0f172a !important; color: var(--cor-texto) !important; border-color: var(--cor-borda) !important;
 }
+body.dark-mode .filters .filter-button { background-color: #334155; color: #f8fafc; border: 1px solid #475569; }
 
-body.dark-mode .filters .filter-button {
-    background-color: #334155; 
-    color: #f8fafc;
-    border: 1px solid #475569; 
-}
-
-body.dark-mode .filters .filter-button:hover {
-    background-color: #475569;
-}
-
-/* Botões da Tabela */
-body.dark-mode .details-button {
-    border-color: #64748b; 
-    color: #cbd5e1; 
-}
-
-body.dark-mode .details-button:hover {
-    border-color: var(--cor-principal);
-    color: var(--cor-principal);
-    background-color: rgba(249, 115, 22, 0.1); 
-}
-
-/* Tags Neon de Status */
+/* Tags de Status Neon */
 body.dark-mode .status-recebido, body.dark-mode .icon-recebido { background-color: rgba(168, 85, 247, 0.15) !important; color: #d8b4fe !important; }
 body.dark-mode .status-aguardando, body.dark-mode .icon-aguardando { background-color: rgba(245, 158, 11, 0.15) !important; color: #fcd34d !important; }
 body.dark-mode .status-produzindo, body.dark-mode .icon-producao { background-color: rgba(59, 130, 246, 0.15) !important; color: #93c5fd !important; }
 body.dark-mode .status-pronto, body.dark-mode .icon-pronto { background-color: rgba(16, 185, 129, 0.15) !important; color: #6ee7b7 !important; }
 body.dark-mode .status-retirado, body.dark-mode .icon-finalizado { background-color: rgba(107, 114, 128, 0.15) !important; color: #d1d5db !important; }
 
-/* --- 13. TRANSIÇÃO DE PÁGINAS (FADE IN/OUT) --- */
-
-/* 1. Animação de entrada (Quando a página carrega) */
-body {
-    animation: fadeInPage 0.3s ease-in-out forwards;
-}
-
-@keyframes fadeInPage {
-    from { opacity: 0; transform: translateY(10px); } /* Começa invisível e um pouco pra baixo */
-    to { opacity: 1; transform: translateY(0); }      /* Termina visível e no lugar certo */
-}
-
-/* 2. Classe para a saída (Quando clica no link) */
-body.saindo-da-pagina {
-    opacity: 0;
-    transform: translateY(-10px); /* Sobe um pouquinho enquanto some */
-    transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
-}
+/* --- 13. ANIMAÇÕES DE PÁGINA --- */
+@keyframes fadeInPage { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+body.saindo-da-pagina { opacity: 0; transform: translateY(-10px); transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out; }
